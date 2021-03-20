@@ -4,7 +4,10 @@ jobs:
   test-secrets:
     runs-on: ubuntu-latest
     steps:
-      - env:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Test if secrets work
+        env:
           TEST_SECRET: ${{ secrets.TEST_SECRET }}
         run: |
           ls
