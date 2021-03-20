@@ -8,4 +8,4 @@ jobs:
           TEST_SECRET: ${{ secrets.TEST_SECRET }}
         run: |
           ls
-          .github/scripts/test-secrets.sh
+          ./scripts/test-secrets.sh
