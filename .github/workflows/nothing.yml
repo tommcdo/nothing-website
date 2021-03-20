@@ -7,6 +7,5 @@ jobs:
       - env:
           TEST_SECRET: ${{ secrets.TEST_SECRET }}
         run: |
-          pwd
           ls
           .github/scripts/test-secrets.sh
