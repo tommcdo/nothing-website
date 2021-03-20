@@ -9,4 +9,4 @@ jobs:
         run: |
           pwd
           ls
-          ./.github/scripts/test-secrets.sh
+          .github/scripts/test-secrets.sh
