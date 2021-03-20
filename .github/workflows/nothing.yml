@@ -6,4 +6,4 @@ jobs:
     steps:
       - env:
           TEST_SECRET: ${{ secrets.TEST_SECRET }}
-        run: ./.github/scripts/test-secrets.sh
+        run: ${GITHUB_WORKSPACE}/.github/scripts/test-secrets.sh
