@@ -24,9 +24,9 @@ jobs:
   upload-website:
     needs: create-infrastructure
     runs-on: ubuntu-latest
-    container:
-      image: amazon/aws-cli
     steps:
+      - name: Install AWS CLI
+        run: apt-get update && apt-get intall awscli
       - name: Checkout
         uses: actions/checkout@v2
       - name: Upload website to S3
