@@ -6,6 +6,7 @@ env:
   AWS_DEFAULT_REGION: ca-central-1
 jobs:
   create-infrastructure:
+    name: Create infrastructure
     runs-on: ubuntu-latest
     container:
       image: hashicorp/terraform
@@ -22,6 +23,7 @@ jobs:
         working-directory: .infrastructure
         run: terraform apply tf.plan
   upload-website:
+    name: Upload website
     needs: create-infrastructure
     runs-on: ubuntu-latest
     steps:
