@@ -19,4 +19,7 @@ jobs:
         run: terraform init
       - name: Create a Terraform plan
         working-directory: .infrastructure
-        run: terraform plan
+        run: terraform plan -out tf.plan
+      - name: Apply Terraform plan
+        working-directory: .infrastructure
+        run: terraform apply tf.plan
