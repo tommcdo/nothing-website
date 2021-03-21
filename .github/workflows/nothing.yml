@@ -1,12 +1,12 @@
 name: nothing
 on: [push]
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: ca-central-1
 jobs:
-  terraform:
+  create-infrastructure:
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: ca-central-1
     container:
       image: hashicorp/terraform
     steps:
@@ -23,3 +23,10 @@ jobs:
       - name: Apply Terraform plan
         working-directory: .infrastructure
         run: terraform apply tf.plan
+  upload-website:
+    runs-on: ubuntu-latest
+    container:
+      image: amazon/aws-cli
+    steps:
+      - name: Upload website to S3
+        run: aws s3 cp --recursive website/ s3://nothing-website.tommcdo.com
