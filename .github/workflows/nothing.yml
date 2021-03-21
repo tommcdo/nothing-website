@@ -12,5 +12,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: What is in here
+        run: ls
       - name: Terraform Init
         run: terraform init
