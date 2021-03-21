@@ -15,4 +15,5 @@ jobs:
       - name: What is in here
         run: ls
       - name: Terraform Init
+        working-directory: .infrastructure
         run: terraform init
