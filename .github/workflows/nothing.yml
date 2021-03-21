@@ -25,9 +25,9 @@ jobs:
     needs: create-infrastructure
     runs-on: ubuntu-latest
     steps:
-      - name: Install AWS CLI
-        run: apt-get update && apt-get intall awscli
       - name: Checkout
         uses: actions/checkout@v2
       - name: Upload website to S3
-        run: aws s3 cp --recursive website/ s3://nothing-website.tommcdo.com
+        uses: docker://amazon/aws-cli
+        with:
+          args: s3 cp --recursive website/ s3://nothing-website.tommcdo.com
