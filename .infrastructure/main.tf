@@ -1,3 +1,11 @@
+terraform {
+    backend "s3" {
+        bucket = "tf-state.nothing-website.tommcdo.com"
+        key = "terraform.tfstate"
+        region = "ca-central-1"
+    }
+}
+
 provider "aws" {}
 
 resource "aws_s3_bucket" "b" {

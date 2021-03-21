@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: What is in here
-        run: ls
       - name: Initialize Terraform
         working-directory: .infrastructure
         run: terraform init
@@ -24,6 +22,7 @@ jobs:
         working-directory: .infrastructure
         run: terraform apply tf.plan
   upload-website:
+    needs: create-infrastructure
     runs-on: ubuntu-latest
     container:
       image: amazon/aws-cli
