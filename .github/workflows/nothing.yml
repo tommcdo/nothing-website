@@ -1,14 +1,15 @@
 name: nothing
 on: [push]
 jobs:
-  test-secrets:
+  terraform:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Test if secrets work
+      - name: Terraform Init
+        uses: docker://hashicorp/terraform
         env:
-          TEST_SECRET: ${{ secrets.TEST_SECRET }}
-        run: |
-          ls
-          ./scripts/test-secrets.sh
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ca-central-1
+        run: terraform plan
